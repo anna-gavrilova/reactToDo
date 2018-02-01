@@ -14,7 +14,7 @@ constructor(props){
 }
 
 componentDidMount(){
-  const jsonURL="https://raw.githubusercontent.com/anna-gavrilova/reactToDo/master/tasks.json";
+  const jsonURL="https://raw.githubusercontent.com/anna-gavrilova/reactToDo/master/src/components/tasks.json";
   fetch(jsonURL)
     .then(response=>response.json())
     .then((data)=>{
