@@ -1,0 +1,40 @@
+.task{
+	height:30px;
+	background-color:#ffe6e6;
+	width: 50%;
+	//margin: auto;
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 24px;
+	text-align:justify;
+	border: 1px solid grey;
+	margin: 5px auto 5px auto;
+}
+
+.completedTask{
+	height:30px;
+	background-color:lightgrey;
+	width: 50%;
+	//margin: auto;
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 24px;
+	text-align:justify;
+	border: 1px solid grey;
+	margin: 5px auto 5px auto;
+	text-decoration: line-through;
+}
+
+.main{
+	border: 1px solid black;
+	text-align: center;
+}
+
+.taskStack{
+
+	border: 1px solid pink;
+
+}
+input{
+	width: 50%;
+	margin-bottom: 10%;
+	margin-top:10%;
+}
