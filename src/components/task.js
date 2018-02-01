@@ -10,6 +10,7 @@ import "./task.css";
 
 class Task extends React.Component{
 
+	
 	render(){
 
 		const title=this.props.task.title;

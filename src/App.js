@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 //import logo from './logo.svg';
 import './App.css';
 import Task from './components/task';
+import Add from "./components/add";
 
 class App extends Component {
 
@@ -14,14 +15,17 @@ constructor(props){
 }
 
 componentDidMount(){
-  const jsonURL="https://raw.githubusercontent.com/anna-gavrilova/reactToDo/master/tasks.json";
+  const jsonURL="https://raw.githubusercontent.com/anna-gavrilova/reactToDo/master/src/components/tasks.json";
   fetch(jsonURL)
     .then(response=>response.json())
     .then((data)=>{
       this.setState({
         tasks:data
       });
+      console.log(data);
     })
+
+
 
 }
 
@@ -33,7 +37,7 @@ componentDidMount(){
     const tasks=[task,task,task];*/
     return (
       <div className="main">
-        <input type="textBox"/>
+        <Add/>
         <div className="taskStack">
           {this.state.tasks.map((task)=>{
               return <Task task={task}/>
