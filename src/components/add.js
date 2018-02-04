@@ -1,5 +1,6 @@
 import React from "react";
 import "./task.css";
+import App from "../App.js";
 
 
 class Add extends React.Component{
@@ -8,7 +9,7 @@ class Add extends React.Component{
 	
 
 
-	addTask(){
+	/*addTask(){
 		const field=document.getElementById("newTaskTitle");
 		const title=field.value;
 		let arr={
@@ -16,7 +17,7 @@ class Add extends React.Component{
 			"completed":false
 		};
 		
-		/*const jsonURL="https://raw.githubusercontent.com/anna-gavrilova/reactToDo/master/src/components/tasks.json";
+		const jsonURL="http://localhost:3002/todos";
   			fetch(jsonURL)
     			.then(response=>response.json())
    		     	 .then((data)=>{
@@ -25,22 +26,22 @@ class Add extends React.Component{
       				App.setState({
         			tasks:data
       });
-    })*/
+    })
 
 		field.value="";
 		field.focus();
 
 
-	}
+	}*/
 
-	render(){
+	/*render(){
 
 		return (<div className="addTask">
 			<input type="text" id="newTaskTitle"/>
 			<button onClick={this.addTask}>Click me!</button>
 
 		</div>);
-	}
+	}*/
 }
 
 export default Add;
