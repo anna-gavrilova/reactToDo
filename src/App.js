@@ -15,6 +15,8 @@ constructor(props){
       term:''
     };
 
+    let uniqueID=999;
+
     this.addTask=this.addTask.bind(this);
     this.changeComplete=this.changeComplete.bind(this);
 
@@ -28,12 +30,7 @@ addTask(){
     if(title==="")
       return;
 
-    let arr={
-      "title":title,
-      "completed":false
-    };
 
-    this.setState({tasks:[arr,...this.state.tasks]});
     /*Actually adds the item into the "database"*/
     const jsonURL="http://localhost:3002/todos";
      fetch(jsonURL, {
@@ -43,10 +40,20 @@ addTask(){
                                 'Content-Type': 'application/json',
                     },
                       body: JSON.stringify(
-                        arr)
+                        {
+                          "title":title,
+                          "completed":false
+                        })
                     });
+    //let lastID=this.state.tasks[this.state.tasks.length-1].id;
+    //console.log(this.state.tasks[this.state.tasks.length]);
+    let arr={
+      "title":title,
+      "completed":false,
+      "id":this.state.tasks.length+1
+    };
 
-
+    this.setState({tasks:[arr,...this.state.tasks]});
     field.value="";
     field.focus();
 
@@ -62,7 +69,7 @@ componentDidMount(){
       this.setState({
         tasks:data.reverse()
       });}
-      console.log(data);
+      //console.log(data);
       
 
     })
@@ -77,7 +84,7 @@ console.log(allTasks);
 Array.prototype.forEach.call(allTasks,function(element,key) {
   if(task.id===element.id){
     allTasks[key].completed=!allTasks[key].completed;
-    console.log(allTasks[key]);
+    //console.log(allTasks[key]);
   }
 })
 this.setState({
