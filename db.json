@@ -7,12 +7,12 @@
     },
     {
       "title": "Добавить фичу с сабтасками",
-      "completed": false,
+      "completed": true,
       "id": 2
     },
     {
       "title": "Change completed-uncompleted",
-      "completed": false,
+      "completed": true,
       "id": 3
     },
     {
@@ -27,12 +27,12 @@
     },
     {
       "title": "New task",
-      "completed": false,
+      "completed": true,
       "id": 6
     },
     {
-      "title": "Another new task",
-      "completed": false,
+      "title": "test",
+      "completed": true,
       "id": 7
     }
   ]

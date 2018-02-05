@@ -8,6 +8,7 @@ import Add from "./components/add";
 class App extends Component {
 
 constructor(props){
+
     super(props);
     this.state={
       tasks:[],
@@ -38,15 +39,13 @@ addTask(){
                       headers: {
                                 'Accept': 'application/json',
                                 'Content-Type': 'application/json',
-                    },
+                               },
                       body: JSON.stringify(
                         {
                           "title":title,
                           "completed":false
                         })
                     });
-    //let lastID=this.state.tasks[this.state.tasks.length-1].id;
-    //console.log(this.state.tasks[this.state.tasks.length]);
     let arr={
       "title":title,
       "completed":false,
@@ -77,28 +76,46 @@ componentDidMount(){
 
 
 }
-
+/*On click changes the completness sttus in database and updates the state for the current view*/
+/*TODO:change the actual database field "completed"*/
 changeComplete(task){
+  
+  /*Retrieves an array from the state, changes it and sets the new state */
 let allTasks=this.state.tasks;
-console.log(allTasks);
 Array.prototype.forEach.call(allTasks,function(element,key) {
   if(task.id===element.id){
     allTasks[key].completed=!allTasks[key].completed;
-    //console.log(allTasks[key]);
+    const jsonURL="http://localhost:3002/todos/"+element.id;
+    fetch(jsonURL, {
+                      method: 'PATCH',//patch partially modifies the record in the "database" and sets it to the current
+                      //completeness status retrieved from the state
+                      headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json',
+                               },
+                      body: JSON.stringify(
+                        {
+                          "completed":allTasks[key].completed
+                        })
+                    });
   }
 })
 this.setState({
       tasks:[...allTasks]
     });
 
+/*TODO:read the json file, store it in the array and rewrite te json file*/
+
+
+
+
+
+      
+
+
 }
 
   render() {
-    /*const task={
-      "title":"Task1",
-      "completed":false
-    }
-    const tasks=[task,task,task];*/
     return (
       <div className="main">
         <div className="addTask">
