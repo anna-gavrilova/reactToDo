@@ -6,11 +6,7 @@ import Add from "./components/add";
 
 
 class App extends Component {
-this.state={
-      tasks:[],
-      isadded:false,
-      term:''
-    };
+
 constructor(props){
     super(props);
     this.state={
@@ -87,6 +83,7 @@ Array.prototype.forEach.call(allTasks,function(element,key) {
 this.setState({
       tasks:[...allTasks]
     });
+
 }
 
   render() {
