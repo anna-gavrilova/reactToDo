@@ -1,5 +1,4 @@
-{
-  "todos": [
+let db=[
     {
       "title": "Оптимизировать код",
       "completed": false,
@@ -26,69 +25,48 @@
       "id": 5
     },
     {
-      "title": "meh",
+      "title": "Новый день -- новые таски",
       "completed": false,
       "id": 6
     },
     {
-      "title": "new task",
-      "completed": false,
+      "title": "Новый день -- новые таски",
+      "completed": true,
       "id": 7
     },
     {
-      "title": "mmm",
-      "completed": false,
+      "title": "Новый день -- новые таски",
+      "completed": true,
       "id": 8
     },
     {
-      "title": "nnnn",
-      "completed": false,
+      "title": "Новый день -- новые таски",
+      "completed": true,
       "id": 9
     },
     {
-      "title": "vvv",
-      "completed": false,
+      "title": "Новый день -- новые таски",
+      "completed": true,
       "id": 10
     },
     {
-      "title": "ddd",
-      "completed": false,
+      "title": "Боже мой оно работает еклмн!",
+      "completed": true,
       "id": 11
     },
     {
-      "title": "wwwwww",
-      "completed": false,
+      "title": "Новый день -- новые таски",
+      "completed": true,
       "id": 12
     },
     {
-      "title": "qqqq",
-      "completed": false,
+      "title": "Новый день -- новые таски",
+      "completed": true,
       "id": 13
     },
     {
-      "title": "lmbbsd",
+      "title": "Новый день -- новые таски",
       "completed": false,
       "id": 14
-    },
-    {
-      "title": "rereww",
-      "completed": false,
-      "id": 15
-    },
-    {
-      "title": ".,",
-      "completed": false,
-      "id": 16
-    },
-    {
-      "title": "new task",
-      "completed": false,
-      "id": 17
-    },
-    {
-      "title": "another new task",
-      "completed": false,
-      "id": 18
     }
-  ]
-}
+  ];

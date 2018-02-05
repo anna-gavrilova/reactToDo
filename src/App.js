@@ -4,8 +4,13 @@ import './App.css';
 import Task from './components/task';
 import Add from "./components/add";
 
-class App extends Component {
 
+class App extends Component {
+this.state={
+      tasks:[],
+      isadded:false,
+      term:''
+    };
 constructor(props){
     super(props);
     this.state={
@@ -15,6 +20,7 @@ constructor(props){
     };
 
     this.addTask=this.addTask.bind(this);
+    this.changeComplete=this.changeComplete.bind(this);
 
 }
 
@@ -23,7 +29,7 @@ addTask(){
 
     const field=document.getElementById("newTaskTitle");
     const title=field.value;
-    if(title=="")
+    if(title==="")
       return;
 
     let arr={
@@ -44,6 +50,7 @@ addTask(){
                         arr)
                     });
 
+
     field.value="";
     field.focus();
 
@@ -55,7 +62,7 @@ componentDidMount(){
   fetch(jsonURL)
     .then(response=>response.json())
     .then((data)=>{
-      if(data.length!=undefined){
+      if(data.length!==undefined){
       this.setState({
         tasks:data.reverse()
       });}
@@ -66,6 +73,20 @@ componentDidMount(){
 
 
 
+}
+
+changeComplete(task){
+let allTasks=this.state.tasks;
+console.log(allTasks);
+Array.prototype.forEach.call(allTasks,function(element,key) {
+  if(task.id===element.id){
+    allTasks[key].completed=!allTasks[key].completed;
+    console.log(allTasks[key]);
+  }
+})
+this.setState({
+      tasks:[...allTasks]
+    });
 }
 
   render() {
@@ -83,7 +104,7 @@ componentDidMount(){
     </div>
         <div className="taskStack">
           {this.state.tasks.map((task)=>{
-              return <Task task={task}/>
+              return <Task key={task.id} task={task} clickHandler={this.changeComplete}/>
             }
           )}
         </div>

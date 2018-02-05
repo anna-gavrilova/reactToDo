@@ -10,6 +10,9 @@ import "./task.css";
 
 class Task extends React.Component{
 
+clickHandler=()=>{
+	this.props.clickHandler(this.props.task);
+}
 	
 	render(){
 
@@ -17,7 +20,7 @@ class Task extends React.Component{
 		let completed=this.props.task.completed;
 		let completedClassName=(!completed)?"task":"completedTask"
 		return(
-			<div className={completedClassName}>
+			<div className={completedClassName} onClick={this.clickHandler}>
 				{title}
 			</div>
 			);
