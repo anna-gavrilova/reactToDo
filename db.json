@@ -3,37 +3,44 @@
     {
       "title": "Оптимизировать код",
       "completed": false,
-      "id": 1
+      "id": 1,
+      "hasSubTask":true
     },
     {
       "title": "Добавить фичу с сабтасками",
       "completed": true,
-      "id": 2
+      "id": 2,
+      "hasSubTask":true
     },
     {
       "title": "Change completed-uncompleted",
       "completed": true,
-      "id": 3
+      "id": 3,
+      "hasSubTask":true
     },
     {
       "title": "фронт",
       "completed": false,
-      "id": 4
+      "id": 4,
+      "hasSubTask":false
     },
     {
       "title": "Боже мой оно работает еклмн!",
       "completed": true,
-      "id": 5
+      "id": 5,
+      "hasSubTask":false
     },
     {
       "title": "New task",
       "completed": true,
-      "id": 6
+      "id": 6,
+      "hasSubTask":true
     },
     {
       "title": "test",
       "completed": true,
-      "id": 7
+      "id": 7,
+      "hasSubTask":false
     }
   ]
 }

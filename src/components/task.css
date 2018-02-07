@@ -25,11 +25,11 @@
 	display: inline-block;
 }
 
-.btnVis{
+.btnVis,.subVis{
 	visibility: visible;
 }
 
-.btnHid{
+.btnHid,.subHid{
 	visibility: hidden;
 }
 

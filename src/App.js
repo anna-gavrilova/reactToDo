@@ -11,9 +11,7 @@ constructor(props){
 
     super(props);
     this.state={
-      tasks:[],
-      isadded:false,
-      term:''
+      tasks:[]
     };
 
     let uniqueID=999;
@@ -43,13 +41,15 @@ addTask(){
                       body: JSON.stringify(
                         {
                           "title":title,
-                          "completed":false
+                          "completed":false,
+                          "hasSubTask":false
                         })
                     });
     let arr={
       "title":title,
       "completed":false,
-      "id":this.state.tasks.length+1
+      "id":this.state.tasks.length+1,
+      "hasSubTask":false
     };
 
     this.setState({tasks:[arr,...this.state.tasks]});
