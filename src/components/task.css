@@ -8,6 +8,7 @@
 	text-align:justify;
 	border: 1px solid grey;
 	margin: 5px auto 5px auto;
+	display: inline-block;
 }
 
 .completedTask{
@@ -21,6 +22,15 @@
 	border: 1px solid grey;
 	margin: 5px auto 5px auto;
 	text-decoration: line-through;
+	display: inline-block;
+}
+
+.btnVis{
+	visibility: visible;
+}
+
+.btnHid{
+	visibility: hidden;
 }
 
 .main{

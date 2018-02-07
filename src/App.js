@@ -105,15 +105,9 @@ this.setState({
     });
 
 /*TODO:read the json file, store it in the array and rewrite te json file*/
-
-
-
-
-
-      
-
-
 }
+
+
 
   render() {
     return (
