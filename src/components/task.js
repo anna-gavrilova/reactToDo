@@ -18,6 +18,8 @@ constructor(props){
 		subTasks:[],
 		subExpanded:false
 	};
+	if(this.state.hasSubTasks)
+		this.setState({subTasks:this.retrieveSubTasks()});
 
 	this.hoverHandler=this.hoverHandler.bind(this);
 }
@@ -29,12 +31,16 @@ clickHandler=()=>{
 hoverHandler=()=>{
 	this.setState({
 		isHovered:!this.state.isHovered});
-	console.log("class changed!");
-	console.log(this.state.hasSubTask);
+	//console.log(this.state.hasSubTask);
 }
 
 expandSubTasks=()=>{
 	this.setState({subExpanded:!this.state.subExpanded});
+}
+retrieveSubTasks=()=>{
+	
+		return this.props.retrieveSubTasks(this.props.task)
+	
 }
 	
 	render(){
@@ -44,7 +50,6 @@ expandSubTasks=()=>{
 		let completedClassName=(!completed)?"task":"completedTask";
 		let btnsClass=this.state.isHovered?"btnVis":"btnHid";
 		let subTaskVisible=this.state.subExpanded?"subVis":"subHid";
-		console.log(this.props.task.hasSubTask);
 		let btnUrl=this.props.task.hasSubTask?require('./subIcon.png'):require('./addSubTask.png');
 		return(
 			<div onMouseOver={this.hoverHandler} onMouseOut={this.hoverHandler}>
@@ -52,7 +57,9 @@ expandSubTasks=()=>{
 					<div className={completedClassName} onClick={this.clickHandler}>
 						{title}
 					</div>
-					<div className={subTaskVisible}>Subtask</div>
+					<div className={subTaskVisible}>
+
+					</div>
 			</div>
 			);
 	}

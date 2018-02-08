@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 //import logo from './logo.svg';
 import './App.css';
 import Task from './components/task';
-import Add from "./components/add";
 
 
 class App extends Component {
@@ -14,7 +13,6 @@ constructor(props){
       tasks:[]
     };
 
-    let uniqueID=999;
 
     this.addTask=this.addTask.bind(this);
     this.changeComplete=this.changeComplete.bind(this);
@@ -107,6 +105,23 @@ this.setState({
 /*TODO:read the json file, store it in the array and rewrite te json file*/
 }
 
+getSubTasks(task){
+ const jsonURL="http://localhost:3002/subtasks";
+ let subArr=[];
+    fetch(jsonURL)
+    .then(response=>response.json())
+    .then((data)=>{
+      data.forEach(function(subtask){
+        console.log(subtask);
+        if(subtask.belongsto===task.id)
+          subArr.push(subtask);
+      })
+      });
+
+    console.log("Hello from the app.js"+subArr);
+    return subArr;
+  }
+
 
 
   render() {
@@ -119,7 +134,7 @@ this.setState({
     </div>
         <div className="taskStack">
           {this.state.tasks.map((task)=>{
-              return <Task key={task.id} task={task} clickHandler={this.changeComplete}/>
+              return <Task key={task.id} task={task} clickHandler={this.changeComplete} retrieveSubTasks={this.getSubTasks}/>
             }
           )}
         </div>
