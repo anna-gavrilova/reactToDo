@@ -1,5 +1,6 @@
 import React from "react";
 import "./task.css";
+import SubTask from "./subTask.js";
 
 /*const task={
 	title:"Title",
@@ -18,10 +19,15 @@ constructor(props){
 		subTasks:[],
 		subExpanded:false
 	};
-	if(this.state.hasSubTasks)
-		this.setState({subTasks:this.retrieveSubTasks()});
-
+	
+	
 	this.hoverHandler=this.hoverHandler.bind(this);
+}
+componentWillMount(){
+	if(this.state.hasSubTasks)
+ 		this.setState({
+		subTasks:[this.props.retrieveSubTasks(this.props.task)]
+	});
 }
 
 clickHandler=()=>{
@@ -39,29 +45,49 @@ expandSubTasks=()=>{
 }
 retrieveSubTasks=()=>{
 	
-		return this.props.retrieveSubTasks(this.props.task)
+	//return this.props.retrieveSubTasks(this.props.task);
+	
 	
 }
+
 	
 	render(){
-
 		const title=this.props.task.title;
 		let completed=this.props.task.completed;
 		let completedClassName=(!completed)?"task":"completedTask";
 		let btnsClass=this.state.isHovered?"btnVis":"btnHid";
 		let subTaskVisible=this.state.subExpanded?"subVis":"subHid";
 		let btnUrl=this.props.task.hasSubTask?require('./subIcon.png'):require('./addSubTask.png');
-		return(
-			<div onMouseOver={this.hoverHandler} onMouseOut={this.hoverHandler}>
-				<span className={btnsClass} onClick={this.expandSubTasks}><img src={btnUrl}/></span>
-					<div className={completedClassName} onClick={this.clickHandler}>
-						{title}
+		if(this.props.task.hasSubTask){
+			//console.log("from render",this.state.subTasks);
+			let arrayToIterate=this.state.subTasks[0];
+			
+				return(
+					<div onMouseOver={this.hoverHandler} onMouseOut={this.hoverHandler}>
+						<span className={btnsClass} onClick={this.expandSubTasks}><img src={btnUrl}/></span>
+							<div className={completedClassName} onClick={this.clickHandler}>
+								{title}
+							</div>
+				     
+							<div className={subTaskVisible}>
+          						{arrayToIterate.map((subt)=>{
+              					return <SubTask key={subt.id} subtask={subt}/>
+							            }
+							          )}
+        				</div>
 					</div>
-					<div className={subTaskVisible}>
-
-					</div>
-			</div>
-			);
+					     
+       				
+					);
+			}else return (<div onMouseOver={this.hoverHandler} onMouseOut={this.hoverHandler}>
+						<span className={btnsClass} onClick={this.expandSubTasks}><img src={btnUrl}/></span>
+							<div className={completedClassName} onClick={this.clickHandler}>
+								{title}
+							</div>
+				     
+					</div>);
+		
+		
 	}
 }
 

@@ -8,7 +8,7 @@
     },
     {
       "title": "Добавить фичу с сабтасками",
-      "completed": true,
+      "completed": false,
       "id": 2,
       "hasSubTask": false
     },
@@ -20,13 +20,13 @@
     },
     {
       "title": "фронт",
-      "completed": false,
+      "completed": true,
       "id": 4,
-      "hasSubTask": false
+      "hasSubTask": true
     },
     {
       "title": "Боже мой оно работает еклмн!",
-      "completed": false,
+      "completed": true,
       "id": 5,
       "hasSubTask": true
     }
@@ -43,6 +43,12 @@
       "title": "subtask2",
       "completed": false,
       "belongsto": 5
+    },
+    {
+      "id": 3,
+      "title": "subtask3",
+      "completed": false,
+      "belongsto": 4
     }
   ]
 }

@@ -27,10 +27,13 @@
 
 .btnVis,.subVis{
 	visibility: visible;
+	position: dynamic;
 }
 
 .btnHid,.subHid{
 	visibility: hidden;
+	position: dynamic;
+	height: 0px;
 }
 
 .main{

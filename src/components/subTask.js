@@ -1,6 +1,5 @@
 import React from "react";
 import "./task.css";
-import Task from "./task";
 class SubTask extends React.Component{
 
 	render(){

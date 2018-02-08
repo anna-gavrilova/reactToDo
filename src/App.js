@@ -109,16 +109,18 @@ getSubTasks(task){
  const jsonURL="http://localhost:3002/subtasks";
  let subArr=[];
     fetch(jsonURL)
-    .then(response=>response.json())
+    .then(results=>{return results.json()})
     .then((data)=>{
-      data.forEach(function(subtask){
-        console.log(subtask);
-        if(subtask.belongsto===task.id)
-          subArr.push(subtask);
-      })
+      data.map((subtask)=>{
+          if(subtask.belongsto===task.id){
+              subArr.push(subtask);
+          }
+      return true
       });
+      
 
-    console.log("Hello from the app.js"+subArr);
+      });
+    //console.log("subArr from app",task.id,subArr)
     return subArr;
   }
 
