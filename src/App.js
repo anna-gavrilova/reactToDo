@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 //import logo from './logo.svg';
 import './App.css';
 import Task from './components/task';
+import "./inputEffects.css";
 
 
 class App extends Component {
@@ -16,6 +17,7 @@ constructor(props){
 
     this.addTask=this.addTask.bind(this);
     this.changeComplete=this.changeComplete.bind(this);
+    this.deleteTask=this.deleteTask.bind(this);
 
 }
 
@@ -124,19 +126,82 @@ getSubTasks(task){
     return subArr;
   }
 
+  deleteTask(task){
+
+     const jsonURL= "http://localhost:3002/todos/"+task.id;
+     fetch(jsonURL, {
+                      method: 'DELETE',
+                      headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json',
+                                }
+                    
+      });
+
+     let temp=this.state.tasks;
+     temp.forEach(function(element,key) {
+        if(element.id===task.id)
+          temp.splice(key,1);
+          ;})
+     this.setState({tasks:[...temp]});
+  }
+
+  addSubTask(task,title){
+    const jsonURL="http://localhost:3002/subtasks";
+    fetch(jsonURL, {
+                      method: 'POST',
+                      headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json',
+                               },
+                      body: JSON.stringify(
+                        {
+                          "title":title,
+                          "completed":false,
+                          "belongsto":task.id
+                        })
+                    });
+      const URL="http://localhost:3002/todos/"+task.id;
+    fetch(URL, {
+                      method: 'PATCH',//patch partially modifies the record in the "database" and sets it to the current
+                      //completeness status retrieved from the state
+                      headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json',
+                               },
+                      body: JSON.stringify(
+                        {
+                          "hasSubTask":true
+                        })
+                    });
+
+
+  }
+
+
 
 
   render() {
     return (
       <div className="main">
         <div className="addTask">
-      <input type="text" id="newTaskTitle"/>
+       <span className="input input--ruri">
+          <input className="input__field input__field--ruri" type="text" id="newTaskTitle" />
+          <label className="input__label input__label--ruri" htmlFor="newTaskTitle">
+            <span className="input__label-content input__label-content--ruri">Username</span>
+          </label>
+        </span>
       <button onClick={this.addTask}>Click me!</button>
 
     </div>
         <div className="taskStack">
           {this.state.tasks.map((task)=>{
-              return <Task key={task.id} task={task} clickHandler={this.changeComplete} retrieveSubTasks={this.getSubTasks}/>
+              return <Task key={task.id}
+                           task={task}
+                           clickHandler={this.changeComplete}
+                           retrieveSubTasks={this.getSubTasks}
+                           deleteTask={this.deleteTask}
+                           addSubTask={this.addSubTask}/>
             }
           )}
         </div>

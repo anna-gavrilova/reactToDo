@@ -1,54 +1,36 @@
 {
   "todos": [
     {
-      "title": "Оптимизировать код",
-      "completed": true,
-      "id": 1,
-      "hasSubTask": false
-    },
-    {
-      "title": "Добавить фичу с сабтасками",
+      "title": "new",
       "completed": false,
-      "id": 2,
-      "hasSubTask": false
+      "hasSubTask": true,
+      "id": 1
     },
     {
-      "title": "Change completed-uncompleted",
-      "completed": true,
-      "id": 3,
-      "hasSubTask": false
-    },
-    {
-      "title": "фронт",
-      "completed": true,
-      "id": 4,
-      "hasSubTask": true
-    },
-    {
-      "title": "Боже мой оно работает еклмн!",
-      "completed": true,
-      "id": 5,
-      "hasSubTask": true
+      "title": "mnbv",
+      "completed": false,
+      "hasSubTask": false,
+      "id": 2
     }
   ],
   "subtasks": [
     {
-      "id": 1,
-      "title": "subtask1",
+      "title": "qwerty",
       "completed": false,
-      "belongsto": 5
+      "belongsto": 1,
+      "id": 1
     },
     {
-      "id": 2,
-      "title": "subtask2",
+      "title": "sub",
       "completed": false,
-      "belongsto": 5
+      "belongsto": 1,
+      "id": 2
     },
     {
-      "id": 3,
-      "title": "subtask3",
+      "title": "mnbvjg",
       "completed": false,
-      "belongsto": 4
+      "belongsto": 1,
+      "id": 3
     }
   ]
 }

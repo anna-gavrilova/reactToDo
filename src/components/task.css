@@ -1,28 +1,72 @@
+html{
+	background-color:#F5F5F5;
+}
+body{
+	background-color:#F5F5F5;
+}
+
 .task{
-	height:30px;
-	background-color:#ffe6e6;
+	background-color:#FACC2E;
 	width: 50%;
 	//margin: auto;
 	font-family: 'Open Sans Condensed', sans-serif;
 	font-size: 24px;
 	text-align:justify;
-	border: 1px solid grey;
+	border-radius: 12px;
 	margin: 5px auto 5px auto;
 	display: inline-block;
+	padding: 5px;
 }
 
 .completedTask{
-	height:30px;
 	background-color:lightgrey;
 	width: 50%;
 	//margin: auto;
 	font-family: 'Open Sans Condensed', sans-serif;
 	font-size: 24px;
 	text-align:justify;
-	border: 1px solid grey;
+	border-radius: 12px;
 	margin: 5px auto 5px auto;
 	text-decoration: line-through;
 	display: inline-block;
+	padding:5px;
+}
+
+.hasSub{
+
+  -webkit-box-shadow: 10px 10px 0 0 #ECECEC;
+  -moz-box-shadow: 10px 10px 0 0 #ECECEC;
+  box-shadow: 5px 5px 0 0 #ECECEC; 
+}
+.hvr-curl-bottom-right {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px  #ffe6e6;
+  position: relative;
+}
+.hvr-curl-bottom-right:before {
+  pointer-events: none;
+  position: absolute;
+  content: '';
+  height: 0;
+  width: 0;
+  bottom: 0;
+  right: 0;
+  background-color: #ffe6e6;
+  /* IE9 */
+  background: linear-gradient(315deg, white 45%, #aaa 50%, #ccc 56%, white 80%);
+  box-shadow: -1px -1px 1px  #ffe6e6;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: width, height;
+  transition-property: width, height;
+}
+.hvr-curl-bottom-right:hover:before, .hvr-curl-bottom-right:focus:before, .hvr-curl-bottom-right:active:before {
+  width: 25px;
+  height: 25px;
+  background-color: #ffe6e6;
 }
 
 .btnVis,.subVis{
@@ -36,18 +80,37 @@
 	height: 0px;
 }
 
+img {
+	margin-bottom: 5px;
+	margin-right: 3px;
+	cursor: pointer;
+}
+
 .main{
-	border: 1px solid black;
 	text-align: center;
 }
 
-.taskStack{
 
-	border: 1px solid pink;
 
-}
-input{
-	width: 50%;
-	margin-bottom: 10%;
-	margin-top:10%;
-}
+
+ .Modal {
+ 	position: absolute;
+    width: 300px;
+    height: 120px;
+    margin:auto;
+    top: 40px;
+    left: 40px;
+    right: 40px;
+    bottom: 40px;
+    background-color:(236,236,236,0.7);
+  }
+
+  .Overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(236,236,236,0.4);
+  }
+
