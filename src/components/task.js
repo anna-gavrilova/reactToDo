@@ -3,12 +3,7 @@ import "./task.css";
 import SubTask from "./subTask.js";
 import ReactModal from 'react-modal';
 
-/*const task={
-	title:"Title",
-	completed:false
-}
-
-<Task task={task}/>*/
+//check this line
 
 class Task extends React.Component{
 
