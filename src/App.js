@@ -18,6 +18,7 @@ constructor(props){
     this.addTask=this.addTask.bind(this);
     this.changeComplete=this.changeComplete.bind(this);
     this.deleteTask=this.deleteTask.bind(this);
+    this.addSubTask=this.addSubTask.bind(this);
 
 }
 
@@ -161,6 +162,12 @@ getSubTasks(task){
                           "belongsto":task.id
                         })
                     });
+
+
+
+
+
+
       const URL="http://localhost:3002/todos/"+task.id;
     fetch(URL, {
                       method: 'PATCH',//patch partially modifies the record in the "database" and sets it to the current
@@ -174,6 +181,16 @@ getSubTasks(task){
                           "hasSubTask":true
                         })
                     });
+
+    let allTasks=this.state.tasks;
+Array.prototype.forEach.call(allTasks,function(element,key) {
+  if(element.id===task.id){
+    allTasks[key].hasSubTask=true;
+  }
+    });
+
+  this.setState({tasks:[...allTasks]});
+
 
 
   }

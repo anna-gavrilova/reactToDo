@@ -31,7 +31,7 @@ constructor(props){
 componentWillMount(){
 	if(this.state.hasSubTasks)
  		this.setState({
-		subTasks:[this.props.retrieveSubTasks(this.props.task).reverse()]
+		subTasks:this.props.retrieveSubTasks(this.props.task).reverse()
 	});
 }
 
@@ -71,19 +71,19 @@ handleCloseModal=()=>{
 	console.log("Modal hidden!");
 }
 addSub=()=>{
-	let taskField=document.getElementById("subtaskTitle");
-	
-	this.props.addSubTask(this.props.task,taskField.value);
-	
+	let title=document.getElementById("subtaskTitle").value;
+	this.props.addSubTask(this.props.task,title);//adds record to the database
+	this.setState({isModal:false});
+	this.setState({subExpanded:true});
 	let arr={
-		"title":taskField.value,
-      	"completed":false,
-      	"id":999,
-      	"belongsto":this.props.task.id
+		"title":title,
+        "completed":false,
+        "belongsto":this.props.task.id,
+        "id":this.state.subTasks.length+1
 	}
-	
- 	this.setState({isModal:false,subExpanded:true});
- 	this.setState({subTasks:[[arr,...this.state.subTasks[0]]]});
+	this.setState({subTasks:[arr,...this.state.subTasks]});
+
+ 	
 
 }
 
@@ -100,7 +100,7 @@ addSub=()=>{
 
 		if(this.props.task.hasSubTask){
 			//console.log("from render",this.state.subTasks);
-			let arrayToIterate=this.state.subTasks[0];
+			let arrayToIterate=this.state.subTasks;
 			
 				return(
 					<div onMouseOver={this.hoverHandler} onMouseOut={this.hoverHandler}>
