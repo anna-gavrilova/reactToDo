@@ -145,6 +145,30 @@ getSubTasks(task){
           temp.splice(key,1);
           ;})
      this.setState({tasks:[...temp]});
+
+     //Get array of subtasks from the database
+     //iterate through this array, find all with belongs to = task.id
+     //delete those
+     let url="http://localhost:3002/subtasks/";
+     fetch(url)
+    .then(results=>{return results.json()})
+    .then((data)=>{
+      data.map((subtask)=>{
+          if(subtask.belongsto===task.id){
+                fetch(url+subtask.id, {
+                      method: 'DELETE',
+                      headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json',
+                                }
+                    
+      });
+          }
+      });
+      
+
+      });
+
   }
 
   addSubTask(task,title){

@@ -35,7 +35,7 @@ componentWillMount(){
 	});
 }
 
-clickHandler=()=>{
+completeTask=()=>{
 	this.props.clickHandler(this.props.task);
 }
 
@@ -117,17 +117,20 @@ addSub=()=>{
 					          <button onClick={this.handleCloseModal}>Close Modal</button>
 					        </ReactModal>
 				      </div>
-						<span className={btnsClass}><img alt="" src={require('./addSub.png')} onClick={this.callModal}/><img alt="" src={subBtnUrl} onClick={this.expandSubTasks}/></span>
-							<div className={completedClassName+' '+"hasSub"} onClick={this.clickHandler}>
+						<span className={'spanBtn'+' '+btnsClass}><img alt="" src={require('./addSub.png')} onClick={this.callModal}/><img alt="" src={subBtnUrl} onClick={this.expandSubTasks}/></span>
+							<div className={completedClassName+' '+"hasSub"} onClick={this.completeTask}>
 								{title}
 							</div>
 						<span className={btnsClass} onClick={this.deleteTask}> <img alt="" src={require('./deleteTask.png')}/></span>
-				     
-							<div className={subTaskVisible}>
+				     	<div className={"subTaskStackWrap"+' '+subTaskVisible} >
+							<div className={"subTaskStack"+' '+subTaskVisible}>
           						{arrayToIterate.map((subt)=>{
-              					return <SubTask key={subt.id} subtask={subt}/>
+              					return <SubTask key={subt.id}
+              								    subtask={subt}
+              								    completeSubTask={this.CompleteSubTask}/>
 							            }
 							          )}
+        				</div>
         				</div>
 					</div>
 
@@ -148,8 +151,8 @@ addSub=()=>{
           <button onClick={this.handleCloseModal}>Close Modal</button>
         </ReactModal>
       </div>
-						<span  className={btnsClass} onClick={this.expandSubTasks}><img alt="" src={subBtnUrl} onClick={this.callModal}/></span>
-							<div className={completedClassName} onClick={this.clickHandler}>
+						<span  className={'spanBtn'+' '+btnsClass} onClick={this.expandSubTasks}><img alt="" src={subBtnUrl} onClick={this.callModal}/></span>
+							<div className={completedClassName} onClick={this.completeTask}>
 								{title}
 							</div>
 						<span className={btnsClass} onClick={this.deleteTask}> <img alt="" src={require('./deleteTask.png')}/></span>

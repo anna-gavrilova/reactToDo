@@ -113,4 +113,33 @@ img {
     bottom: 0;
     background-color: rgba(236,236,236,0.4);
   }
+  .subTaskStackWrap{
+  	text-align:right;
+  	width: 50%;
+  	margin: auto;
+
+  }
+  .subTaskStack{
+  	width: 40%;
+  	margin:auto;
+  	display: inline-block;
+  }
+
+  .subTask{
+  	background-color:rgba(39, 177, 190,0.5);
+	//width: 20%;
+	margin:5px;
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 24px;
+	text-align:justify;
+	border-radius: 12px;
+	padding: 5px;
+  }
+
+  .spanBtn{
+  	width: 100px;
+  	height: 40px;
+  	text-align: right;
+  	display: inline-block;
+  }
 
