@@ -19,7 +19,8 @@ body{
 }
 
 .completedTask{
-	background-color:lightgrey;
+	color: #F5F5F5;
+	background-color:#ECECEC;
 	width: 50%;
 	//margin: auto;
 	font-family: 'Open Sans Condensed', sans-serif;
@@ -27,7 +28,7 @@ body{
 	text-align:justify;
 	border-radius: 12px;
 	margin: 5px auto 5px auto;
-	text-decoration: line-through;
+	//text-decoration: line-through;
 	display: inline-block;
 	padding:5px;
 }
@@ -71,12 +72,12 @@ body{
 
 .btnVis,.subVis{
 	visibility: visible;
-	position: dynamic;
+	//position: dynamic;
 }
 
 .btnHid,.subHid{
 	visibility: hidden;
-	position: dynamic;
+	//position: dynamic;
 	height: 0px;
 }
 
@@ -120,20 +121,28 @@ img {
 
   }
   .subTaskStack{
-  	width: 40%;
+  	width: 60%;
   	margin:auto;
   	display: inline-block;
   }
 
   .subTask{
+
+  	color: #F5F5F5;
   	background-color:rgba(39, 177, 190,0.5);
-	//width: 20%;
-	margin:5px;
+	width: 70%;
+	margin:6px;
 	font-family: 'Open Sans Condensed', sans-serif;
 	font-size: 24px;
 	text-align:justify;
 	border-radius: 12px;
 	padding: 5px;
+	display: inline-block;
+  	word-wrap: break-word;
+  }
+  .subCompleted{
+  	background-color: #ECECEC;
+  	text-decoration:line-through;
   }
 
   .spanBtn{
@@ -142,4 +151,8 @@ img {
   	text-align: right;
   	display: inline-block;
   }
+
+  
+
+ 
 

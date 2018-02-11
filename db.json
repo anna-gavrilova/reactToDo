@@ -2,10 +2,41 @@
   "todos": [
     {
       "title": "New task",
-      "completed": true,
-      "hasSubTask": false,
+      "completed": false,
+      "hasSubTask": true,
       "id": 1
+    },
+    {
+      "title": "New task 3",
+      "completed": false,
+      "hasSubTask": false,
+      "id": 3
     }
   ],
-  "subtasks": []
+  "subtasks": [
+    {
+      "title": "subtask",
+      "completed": false,
+      "belongsto": 1,
+      "id": 1
+    },
+    {
+      "title": "subtask2",
+      "completed": false,
+      "belongsto": 1,
+      "id": 2
+    },
+    {
+      "title": "veruveryveryveyrveyveyevyervyvyveyrveyrvolong subtask name very!",
+      "completed": false,
+      "belongsto": 1,
+      "id": 4
+    },
+    {
+      "title": "mmnmn",
+      "completed": false,
+      "belongsto": 1,
+      "id": 5
+    }
+  ]
 }

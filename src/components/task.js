@@ -76,7 +76,7 @@ addSub=()=>{
         "belongsto":this.props.task.id,
         "id":this.state.subTasks.length+1
 	}
-	this.setState({subTasks:[arr,...this.state.subTasks]});
+	this.setState({subTasks:[...this.state.subTasks,arr]});
 
  	
 
@@ -91,7 +91,7 @@ addSub=()=>{
 		let subTaskVisible=this.state.subExpanded?"subVis":"subHid";
 		let subTasksBtn=this.state.subExpanded?require('./hideSub.png'):require('./subIcon.png');
 		let subBtnUrl=this.props.task.hasSubTask?subTasksBtn:require('./addSub.png');
-		console.log(this.props.task.hasSubTask);
+		
 
 		if(this.props.task.hasSubTask){
 			//console.log("from render",this.state.subTasks);
@@ -122,7 +122,7 @@ addSub=()=>{
           						{arrayToIterate.map((subt)=>{
               					return <SubTask key={subt.id}
               								    subtask={subt}
-              								    completeSubTask={this.CompleteSubTask}/>
+              								    />
 							            }
 							          )}
         				</div>
