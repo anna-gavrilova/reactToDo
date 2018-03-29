@@ -233,7 +233,7 @@ Array.prototype.forEach.call(allTasks,function(element,key) {
             <span className="input__label-content input__label-content--ruri">Username</span>
           </label>
         </span>
-      <button onClick={this.addTask}>Click me!</button>
+      <button className="btn btn-primary"onClick={this.addTask}>Click me!</button>
 
     </div>
         <div className="taskStack">
