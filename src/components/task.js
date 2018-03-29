@@ -22,6 +22,7 @@ constructor(props){
 	this.callModal=this.callModal.bind(this);
 	this.handleCloseModal=this.handleCloseModal.bind(this);
 	this.addSub=this.addSub.bind(this);
+	this.deleteSubTask=this.deleteSubTask.bind(this);
 }
 componentWillMount(){
 	if(this.state.hasSubTasks)
@@ -82,6 +83,26 @@ addSub=()=>{
 
 }
 
+deleteSubTask(subTask){
+	//deletes aubtask form an actual database
+	const jsonURL= "http://localhost:3002/subtasks/"+subTask.id;
+     fetch(jsonURL, {
+                      method: 'DELETE',
+                      headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json',
+                                }
+                    
+      });
+     //temporaliry updates the state so we see the update right away
+     let temp=this.state.subTasks;
+     temp.forEach(function(element,key) {
+        if(element.id===subTask.id)
+          temp.splice(key,1);
+          ;})
+     this.setState({subTasks:[...temp]});
+}
+
 	
 	render(){
 		const title=this.props.task.title;
@@ -122,6 +143,7 @@ addSub=()=>{
           						{arrayToIterate.map((subt)=>{
               					return <SubTask key={subt.id}
               								    subtask={subt}
+              								    deleteSubTask={this.deleteSubTask}
               								    />
 							            }
 							          )}
@@ -134,23 +156,23 @@ addSub=()=>{
        				
 					);
 			}else return (<div onMouseOver={this.hoverHandler} onMouseOut={this.hoverHandler}>
-			  <div>
-        <ReactModal 
-           isOpen={this.state.isModal}
-           onRequestClose={this.handleCloseModal}
-           className="Modal"
-           overlayClassName="Overlay"
-        >
-          <input type="text" id="subtaskTitle"/>
-          <button onClick={this.addSub}>New Subtask</button>
-          <button onClick={this.handleCloseModal}>Close Modal</button>
-        </ReactModal>
-      </div>
-						<span  className={'spanBtn'+' '+btnsClass} onClick={this.expandSubTasks}><img alt="" src={subBtnUrl} onClick={this.callModal}/></span>
-							<div className={completedClassName} onClick={this.completeTask}>
-								{title}
-							</div>
-						<span className={btnsClass} onClick={this.deleteTask}> <img alt="" src={require('./deleteTask.png')}/></span>
+								<div>
+							        <ReactModal 
+							           isOpen={this.state.isModal}
+							           onRequestClose={this.handleCloseModal}
+							           className="Modal"
+							           overlayClassName="Overlay">
+
+							          <input type="text" id="subtaskTitle" className="btn modalInput"/>
+							          <button onClick={this.addSub} className="modalBtn btn btn-primary">+</button>
+
+							        </ReactModal>
+							    </div>
+								<span  className={'spanBtn'+' '+btnsClass} onClick={this.expandSubTasks}><img alt="" src={subBtnUrl} onClick={this.callModal}/></span>
+								<div className={completedClassName} onClick={this.completeTask}>
+									{title}
+								</div>
+								<span className={btnsClass} onClick={this.deleteTask}> <img alt="" src={require('./deleteTask.png')}/></span>
 				     
 
 

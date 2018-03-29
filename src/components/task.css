@@ -1,3 +1,5 @@
+*:focus {outline:0;}
+
 html{
 	background-color:#F5F5F5;
 }
@@ -92,19 +94,23 @@ img {
 }
 
 
-
+/*=======================================Modal===================================*/
 
  .Modal {
- 	position: absolute;
-    width: 300px;
+ 	  position: absolute;
     height: 120px;
     margin:auto;
     top: 40px;
     left: 40px;
     right: 40px;
     bottom: 40px;
-    background-color:(236,236,236,0.7);
+    border: none;
+    background-color:(236,236,236,0.9);
+    text-align: center;
   }
+
+
+
 
   .Overlay {
     position: fixed;
@@ -112,8 +118,24 @@ img {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(236,236,236,0.4);
+    background-color: rgba(255,255,255,0.4);
   }
+
+  .modalInput{
+
+    height: 50px;
+    width: 250px;
+    padding: 5px;
+    font-size:24px;
+    font-family: 'Open Sans Condensed', sans-serif;
+
+  }
+
+  .modalBtn{
+    margin: 10px;
+
+  }
+
   .subTaskStackWrap{
   	text-align:right;
   	width: 50%;
@@ -151,6 +173,10 @@ img {
   	text-align: right;
   	display: inline-block;
   }
+
+ 
+
+
 
   
 

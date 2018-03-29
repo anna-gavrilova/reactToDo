@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 //import logo from './logo.svg';
 import './App.css';
 import Task from './components/task';
-import "./inputEffects.css";
 
 
 class App extends Component {
@@ -172,6 +171,8 @@ getSubTasks(task){
 
   }
 
+
+
   addSubTask(task,title){
     const jsonURL="http://localhost:3002/subtasks";
     fetch(jsonURL, {
@@ -227,13 +228,9 @@ Array.prototype.forEach.call(allTasks,function(element,key) {
     return (
       <div className="main">
         <div className="addTask">
-       <span className="input input--ruri">
-          <input className="input__field input__field--ruri" type="text" id="newTaskTitle" />
-          <label className="input__label input__label--ruri" htmlFor="newTaskTitle">
-            <span className="input__label-content input__label-content--ruri">Username</span>
-          </label>
-        </span>
-      <button className="btn btn-primary"onClick={this.addTask}>Click me!</button>
+      
+      <input type="text" className="mainInput" id="newTaskTitle"/>
+      <button className="btn btn-primary modalBtn"onClick={this.addTask}>+</button>
 
     </div>
         <div className="taskStack">

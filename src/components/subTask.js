@@ -11,6 +11,7 @@ class SubTask extends React.Component{
 
 	this.completeSubTask=this.completeSubTask.bind(this);
 	this.hoverHandler=this.hoverHandler.bind(this);
+	this.deleteSubTask=this.deleteSubTask.bind(this);
 	}
 
 	hoverHandler=()=>{
@@ -37,14 +38,18 @@ class SubTask extends React.Component{
 
 	}
 
+	deleteSubTask(){
+		this.props.deleteSubTask(this.props.subtask);
+	}
+
 	render(){
 
 		let subCompleteStatus=this.state.isCompleted?"subCompleted":"";
 		let btnVis=this.state.isHovered?"btnVis":"btnHid";
 		
 			return <div onMouseOver={this.hoverHandler} 
-				onMouseOut={this.hoverHandler}><img src={require('./deleteTask.png')} className={"delSubBtn"+' '+btnVis} 
-			/>
+						onMouseOut={this.hoverHandler}>
+					<img src={require('./deleteTask.png')} className={"delSubBtn"+' '+btnVis} onClick={this.deleteSubTask}/>
 
 			<span>
 
