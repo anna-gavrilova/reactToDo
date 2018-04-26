@@ -40,6 +40,8 @@ class SubTask extends React.Component{
 
 	deleteSubTask(){
 		this.props.deleteSubTask(this.props.subtask);
+		this.setState({
+		isHovered:!this.state.isHovered});
 	}
 
 	render(){

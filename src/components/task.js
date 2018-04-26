@@ -100,7 +100,10 @@ deleteSubTask(subTask){
         if(element.id===subTask.id)
           temp.splice(key,1);
           ;})
+
      this.setState({subTasks:[...temp]});
+     this.setState({
+		isHovered:!this.state.isHovered});
 }
 
 	
@@ -127,10 +130,9 @@ deleteSubTask(subTask){
 					           className="Modal"
 					           overlayClassName="Overlay"
 					        >
-					          <input type="text" id="subtaskTitle"/>
+					          <input type="text" id="subtaskTitle" className="btn modalInput"/>
 
-          					  <button onClick={this.addSub}>New Subtask</button>
-					          <button onClick={this.handleCloseModal}>Close Modal</button>
+          					  <button onClick={this.addSub} className="modalBtn btn btn-primary">+</button>
 					        </ReactModal>
 				      </div>
 						<span className={'spanBtn'+' '+btnsClass}><img alt="" src={require('./addSub.png')} onClick={this.callModal}/><img alt="" src={subBtnUrl} onClick={this.expandSubTasks}/></span>

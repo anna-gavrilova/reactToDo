@@ -133,8 +133,23 @@ img {
 
   .modalBtn{
     margin: 10px;
+    background-color: #FACC2E;
 
   }
+
+
+  .btn:active,
+  .btn-primary,
+  .btn-primary:active,
+  .btn-primary:focus,
+  .btn-primary:hover,
+  .btn:focus,
+  .btn:visited,
+  .btn:hover{
+    background-color: #FACC2E !important;
+  }
+
+
 
   .subTaskStackWrap{
   	text-align:right;
