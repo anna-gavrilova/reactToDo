@@ -1,16 +1,11 @@
 {
   "todos": [
     {
-      "title": "My new task",
+      "title": "tsk1",
       "completed": false,
       "hasSubTask": false,
+      "amtOfSubtasks": 0,
       "id": 1
-    },
-    {
-      "title": "My new task 2",
-      "completed": false,
-      "hasSubTask": true,
-      "id": 2
     }
   ],
   "subtasks": []

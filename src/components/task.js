@@ -101,6 +101,30 @@ deleteSubTask(subTask){
           temp.splice(key,1);
           ;})
 
+     //determine if we are deleting the last subtask for particular task:
+     let status=true;
+     if(this.props.task.amtOfSubtasks==1){
+     	status=false;
+     	this.setState({hasSubTasks:false});
+     }
+
+      const URL="http://localhost:3002/todos/"+subTask.belongsto;
+    fetch(URL, {
+                      method: 'PATCH',//patch partially modifies the record in the "database" and sets it to the current
+                      //completeness status retrieved from the state
+                      headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json',
+                               },
+                      body: JSON.stringify(
+                        {
+                          "hasSubTask":status,
+                          "amtOfSubtasks":this.props.task.amtOfSubtasks-1
+                        })
+                    });
+
+    
+   	 console.log(this.props.task.amtOfSubtasks);
      this.setState({subTasks:[...temp]});
      this.setState({
 		isHovered:!this.state.isHovered});

@@ -42,14 +42,16 @@ addTask(){
                         {
                           "title":title,
                           "completed":false,
-                          "hasSubTask":false
+                          "hasSubTask":false,
+                          "amtOfSubtasks":0
                         })
                     });
     let arr={
       "title":title,
       "completed":false,
       "id":this.state.tasks.length+1,
-      "hasSubTask":false
+      "hasSubTask":false,
+      "amtOfSubtasks":0
     };
 
     this.setState({tasks:[arr,...this.state.tasks]});
@@ -204,10 +206,11 @@ getSubTasks(task){
                                },
                       body: JSON.stringify(
                         {
-                          "hasSubTask":true
+                          "hasSubTask":true,
+                          "amtOfSubtasks":task.amtOfSubtasks+1
                         })
                     });
-
+    task.amtOfSubtasks++;
     let allTasks=this.state.tasks;
 Array.prototype.forEach.call(allTasks,function(element,key) {
   if(element.id===task.id){
@@ -220,6 +223,8 @@ Array.prototype.forEach.call(allTasks,function(element,key) {
 
 
   }
+
+
 
 
 
