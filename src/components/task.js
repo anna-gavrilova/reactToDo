@@ -25,10 +25,18 @@ constructor(props){
 	this.deleteSubTask=this.deleteSubTask.bind(this);
 }
 componentWillMount(){
-	if(this.state.hasSubTasks)
- 		this.setState({
-		subTasks:this.props.retrieveSubTasks(this.props.task).reverse()
-	});
+	if(this.state.hasSubTasks){
+		this.props.retrieveSubTasks(this.props.task)
+		.then(
+			res=>{
+				console.log(res)
+				this.setState({
+					subTasks:res.data.docs.reverse()
+				})
+			}
+		)
+		
+	}
 }
 
 completeTask=()=>{
@@ -132,6 +140,7 @@ deleteSubTask(subTask){
 
 	
 	render(){
+		
 		const title=this.props.task.title;
 		let completed=this.props.task.completed;
 		let completedClassName=(!completed)?"task":"completedTask";
@@ -142,7 +151,7 @@ deleteSubTask(subTask){
 		
 
 		if(this.props.task.hasSubTask){
-			//console.log("from render",this.state.subTasks);
+			console.log("from render",this.state.subTasks);
 			let arrayToIterate=this.state.subTasks;
 			
 				return(

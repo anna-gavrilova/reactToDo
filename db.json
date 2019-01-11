@@ -1,12 +1,26 @@
 {
   "todos": [
     {
-      "title": "tsk1",
+      "title": "Задание 1",
+      "completed": false,
+      "hasSubTask": true,
+      "amtOfSubtasks": 1,
+      "id": 1
+    },
+    {
+      "title": "Task 2",
       "completed": false,
       "hasSubTask": false,
       "amtOfSubtasks": 0,
-      "id": 1
+      "id": 2
     }
   ],
-  "subtasks": []
+  "subtasks": [
+    {
+      "title": "Подзадание 1.2",
+      "completed": true,
+      "belongsto": 1,
+      "id": 2
+    }
+  ]
 }

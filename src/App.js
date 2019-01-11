@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 //import logo from './logo.svg';
 import './App.css';
 import Task from './components/task';
+import axios from 'axios';
+var taskUrl="http://127.0.0.1:3001/api/tasks/";
 
 
 class App extends Component {
@@ -29,107 +31,66 @@ addTask(){
     if(title==="")
       return;
 
+    var body=
+      {
+        title:title,
+        completed:false,
+        hasSubTask:false,
+        amtOfSubtasks:0
+      };
 
-    /*Actually adds the item into the "database"*/
-    const jsonURL="http://localhost:3002/todos";
-     fetch(jsonURL, {
-                      method: 'POST',
-                      headers: {
-                                'Accept': 'application/json',
-                                'Content-Type': 'application/json',
-                               },
-                      body: JSON.stringify(
-                        {
-                          "title":title,
-                          "completed":false,
-                          "hasSubTask":false,
-                          "amtOfSubtasks":0
-                        })
-                    });
-    let arr={
-      "title":title,
-      "completed":false,
-      "id":this.state.tasks.length+1,
-      "hasSubTask":false,
-      "amtOfSubtasks":0
-    };
+    axios.post('http://127.0.0.1:3001/api/tasks',{title:title}).then(
+      res=>{
+        field.value="";
+        field.focus();
+        this.getTasks();
+      }
+      
+    )
 
-    this.setState({tasks:[arr,...this.state.tasks]});
+  
     field.value="";
     field.focus();
-
-
-  }
+}
 
 componentDidMount(){
-  const jsonURL="http://localhost:3002/todos";
-  fetch(jsonURL)
-    .then(response=>response.json())
-    .then((data)=>{
-      if(data.length!==undefined){
-      this.setState({
-        tasks:data.reverse()
-      });}
-      //console.log(data);
-      
-
-    })
-
-
-
+  this.getTasks();
 }
+
+getTasks(){
+ axios.get(taskUrl)
+  .then(response=>{
+    if(response['data']['success']){
+      this.setState({
+        tasks:response.data.docs.reverse()
+      })
+    }
+  })
+}
+
 /*On click changes the completness sttus in database and updates the state for the current view*/
 /*TODO:change the actual database field "completed"*/
 changeComplete(task){
-  
-  /*Retrieves an array from the state, changes it and sets the new state */
-let allTasks=this.state.tasks;
-Array.prototype.forEach.call(allTasks,function(element,key) {
-  if(task.id===element.id){
-    allTasks[key].completed=!allTasks[key].completed;
-    const jsonURL="http://localhost:3002/todos/"+element.id;
-    fetch(jsonURL, {
-                      method: 'PATCH',//patch partially modifies the record in the "database" and sets it to the current
-                      //completeness status retrieved from the state
-                      headers: {
-                                'Accept': 'application/json',
-                                'Content-Type': 'application/json',
-                               },
-                      body: JSON.stringify(
-                        {
-                          "completed":allTasks[key].completed
-                        })
-                    });
-  }
-})
-this.setState({
-      tasks:[...allTasks]
-    });
+  axios.post('http://127.0.0.1:3001/api/tasks/do',{task})
+    .then(res=>{
+      this.getTasks();
+    })
 
-/*TODO:read the json file, store it in the array and rewrite te json file*/
 }
 
 
 getSubTasks(task){
- const jsonURL="http://localhost:3002/subtasks";
- let subArr=[];
-    fetch(jsonURL)
-    .then(results=>{return results.json()})
-    .then((data)=>{
-      data.map((subtask)=>{
-          if(subtask.belongsto===task.id){
-              subArr.push(subtask);
-          }
-      return true
-      });
-      
+  console.log("imtryinhere")
+  console.log(task)
+  var subarr;
+  return axios.get("http://localhost:3001/api/tasks/sub/"+task._id)
 
-      });
-    //console.log("subArr from app",task.id,subArr)
-    return subArr;
   }
 
+//delete task
   deleteTask(task){
+
+    axios.delete("http://localhost:3001/tasks/"+task.id)
 
      const jsonURL= "http://localhost:3002/todos/"+task.id;
      fetch(jsonURL, {
@@ -176,52 +137,10 @@ getSubTasks(task){
 
 
   addSubTask(task,title){
-    const jsonURL="http://localhost:3002/subtasks";
-    fetch(jsonURL, {
-                      method: 'POST',
-                      headers: {
-                                'Accept': 'application/json',
-                                'Content-Type': 'application/json',
-                               },
-                      body: JSON.stringify(
-                        {
-                          "title":title,
-                          "completed":false,
-                          "belongsto":task.id
-                        })
-                    });
-
-
-
-
-
-
-      const URL="http://localhost:3002/todos/"+task.id;
-    fetch(URL, {
-                      method: 'PATCH',//patch partially modifies the record in the "database" and sets it to the current
-                      //completeness status retrieved from the state
-                      headers: {
-                                'Accept': 'application/json',
-                                'Content-Type': 'application/json',
-                               },
-                      body: JSON.stringify(
-                        {
-                          "hasSubTask":true,
-                          "amtOfSubtasks":task.amtOfSubtasks+1
-                        })
-                    });
-    task.amtOfSubtasks++;
-    let allTasks=this.state.tasks;
-Array.prototype.forEach.call(allTasks,function(element,key) {
-  if(element.id===task.id){
-    allTasks[key].hasSubTask=true;
-  }
-    });
-
-  this.setState({tasks:[...allTasks]});
-
-
-
+    const jsonURL="http://localhost:3001/api/tasks/sub";
+    axios.post(jsonURL,{task:task,sub:title}).then(_=>{
+      this.getTasks();
+    })
   }
 
 
